@@ -1,18 +1,21 @@
 let array = [1, 2, 10, 99, 0, 'test'];
-let even = 0;
-let odd = 0;
-let nulls = 0;
-let str = 0;
+
+// В случае, если вы объяаляете несколько однотипных переменных сразу, можно использовать сокращенную запись:
+let even = 0, odd = 0, nulls = 0, str = 0;
 for(let i = 0; i < array.length; i++){
     let x = array[i];
-    if(typeof x == 'number' && x % 2 == 0 && x != 0){
-        even++;
-    }else if(typeof x == 'number' && x % 2 != 0 && x != 0){
-        odd++;
-    }else if(typeof x == 'string'){
+
+    // Данная комбинация операторов if рабочая, но не очень оптимальна и плохо читается. Перегруппировав условные операторы, можно сделать код более логичным и читабельным, исправила ниже:
+    if (typeof x === 'number') {
+        if (x === 0) {
+            nulls++;
+        } else if (x % 2 === 0) {
+            even++;
+        } else {
+            odd++;
+        }
+    } else if (typeof x === 'string') {
         str++;
-    }else if(x == 0){
-        nulls++;
     }
   }
 console.log('Чётные числа ' + even + '\nНечётные числа ' + odd + '\nСтрок ' + str + '\nНулей ' + nulls);
